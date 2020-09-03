@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Connection;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +27,6 @@ Route::get('/coneccion', function () {
 
     return view('welcome');
 });
+
+Route::get('preview', 'PDFController@preview');
+Route::get('download', 'PDFController@download')->name('download');
