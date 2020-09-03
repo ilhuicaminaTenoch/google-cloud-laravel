@@ -18,8 +18,13 @@ class PDFController extends Controller
         $pdf = new Pdf;
         $pdf->addPage($render);
         $pdf->setOptions(['javascript-delay' => 5000]);
-        $pdf->saveAs(public_path('report.pdf'));
+        if (!$pdf->saveAs(public_path('report.pdf'))){
+            return $pdf->getError();
+        }else{
+            return response()->download(public_path('/pdfs/report.pdf'));
+        }
 
-        return response()->download(public_path('/pdfs/report.pdf'));
+
+
     }
 }
